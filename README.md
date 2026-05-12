@@ -81,23 +81,6 @@ Embedded magnetorquers provide active control authority and correction of residu
 
 ---
 
-# Repository Structure
-
-```txt
-PicoSatellite-ADCS
-│
-├── README.md
-├── Paper
-├── CAD
-├── Simulations
-├── Experimental-Testing
-├── Images
-├── Videos
-└── Documentation
-```
-
----
-
 # Research Paper
 
 This repository includes the AIAA Region I Student Conference paper:
