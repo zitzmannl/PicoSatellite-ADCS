@@ -1,135 +1,225 @@
 # PicoSatellite ADCS
 
-Design, simulation, and experimental validation of a hybrid attitude determination and control system (ADCS) for a PocketQube satellite using gravity-gradient stabilization and magnetorquer-assisted control.
+Design and experimental validation of a deployable gravity-gradient boom system for hybrid attitude control of a PocketQube satellite.
+
+This project was developed as part of the Wentworth PicoSat Initiative and presented at the AIAA Region I Student Conference.
 
 ---
 
-# Project Overview
+## Project Overview
 
-This project was developed through the Wentworth PicoSat Initiative as part of the design and validation of a hybrid spacecraft attitude control architecture for a PocketQube satellite platform.
+The Wentworth PocketQube is an experimental Earth-imaging satellite designed around the severe mass, volume, and power constraints of the PocketQube platform.
 
-The system combines:
+The spacecraft uses a hybrid attitude control architecture combining passive gravity-gradient stabilization with active magnetic control. A tethered mass deploys from the spacecraft to increase its moment of inertia and generate a gravity-gradient restoring torque, while magnetorquers are intended to provide supplementary active control.
 
-- Passive gravity-gradient stabilization
-- Deployable tethered boom dynamics
-- Magnetorquer-assisted control
-- Simulation-driven design
-- Experimental deployment validation
-
-The objective of the system is to achieve stable Earth-oriented attitude control within the severe mass, power, and volume constraints of the PocketQube platform.
+![PocketQube Internal Assembly](Images/pocketqube_internal_assembly.png)
 
 ---
 
-# System Architecture
+## My Contributions
 
-The attitude control system uses a hybrid control approach:
+My primary responsibilities focused on the mechanical design, prototyping, assembly, and experimental validation of the gravity-gradient deployment system.
 
-## Passive Control
-A deployable gravity-gradient boom extends a tethered mass below the spacecraft, increasing the system moment of inertia and generating a restoring torque due to Earth’s gravity gradient.
+I was responsible for:
 
-## Active Control
-Embedded magnetorquers provide active control authority and correction of residual yaw drift within Earth’s magnetic field.
+- Designing the gravity-gradient boom mass around the geometry and packaging constraints of the satellite baseplate
+- Maximizing boom mass within the available volume while maintaining clearance around critical satellite components
+- Positioning the boom mass center of mass near the deployment shaft axis to reduce unwanted rotational effects during deployment
+- Designing a hollow 3D-printed experimental boom mass that could be filled with lead pellets for scaled testing
+- Assembling the physical satellite mockup and deployment hardware
+- Developing and conducting the tether deployment experiments
+- Testing multiple tether spool configurations
+- Evaluating deployment behavior and identifying sources of transient disturbance
+- Refining the spool configuration to improve deployment consistency
+
+I also contributed to basic MATLAB/Simulink development during the broader project.
+
+The high-fidelity orbital dynamics simulation and simulation results presented in this repository were primarily developed by project teammate **Lucas Wing**.
 
 ---
 
-# Project Components
+## Mechanical Design
 
-## Gravity-Gradient Boom System
-- Deployable tethered boom architecture
-- Tungsten boom mass optimization
-- Tether spool geometry development
-- Deployment stability analysis
+### Gravity-Gradient Boom Mass
 
-## Simulation & Dynamics
-- Quaternion-based rotational dynamics
-- LVLH frame transformations
-- Tether force modeling
+The boom mass was designed around the existing satellite baseplate and internal component layout.
+
+The design required sufficient deployed mass to generate a useful gravity-gradient moment while remaining within the limited volume and mass budget of the PocketQube.
+
+Additional design considerations included:
+
+- Camera and light-sensor clearance
+- PCB and component clearance
+- Tether routing
+- Deployment shaft location
+- Center-of-mass alignment
+- Rotational inertia
+- PocketQube packaging constraints
+
+Tungsten was selected for the flight design because its high density allowed approximately 100 g of mass to be concentrated within the available geometry.
+
+![Boom Mass Baseplate Integration](Images/boom_mass_baseplate_integration.png)
+
+The irregular geometry allows the mass to conform to the available baseplate area while avoiding interference with surrounding spacecraft components.
+
+---
+
+## Numerical Simulation
+
+A high-fidelity numerical model was developed by **Lucas Wing** to evaluate the coupled dynamics of the satellite and tethered boom in low Earth orbit.
+
+The simulation incorporated:
+
+- Two-body orbital dynamics
+- Quaternion-based attitude propagation
+- Gravity-gradient torque
+- Tether forces and moments
+- Spring-damper tether behavior
 - Variable-step Runge-Kutta integration
-- Gravity-gradient torque analysis
+- LVLH attitude tracking
+
+![Simulation Flowchart](Images/simulation_flowchart.png)
+
+### Attitude Stabilization Results
+
+![Attitude Stabilization Results](Images/attitude_stabilization_results.png)
+
+The simulation demonstrated bounded gravity-gradient libration and maintained the primary nadir-pointing axes near their initial alignment throughout the 8,000-second simulation.
+
+A small drift remained about the uncontrolled axis, supporting the hybrid architecture in which magnetorquers provide supplementary active attitude control.
+
+---
 
 ## Experimental Validation
-- Scaled tether deployment experiments
-- Spool geometry testing
-- Deployment disturbance analysis
-- Tension spike mitigation
+
+Numerical simulation was useful for predicting orbital behavior, but physical tether deployment introduced mechanical effects that were difficult to model accurately.
+
+A scaled experimental system was therefore developed to investigate:
+
+- Tether unspooling behavior
+- Spool geometry
+- Deployment consistency
+- Transient tension disturbances
+- Mechanical failure modes
+
+I assembled the experimental satellite mockup and conducted the deployment testing using a suspended test configuration.
+
+![Deployment Test Setup](Images/deployment_test_setup.jpeg)
+
+### Scaled Experimental Boom Mass
+
+Manufacturing the experimental mass from tungsten was not practical for laboratory testing.
+
+I designed a hollow 3D-printed version of the boom mass that could be filled with lead pellets. The resulting experimental mass was used with a proportionally scaled satellite mockup to preserve the approximate mass relationship between the spacecraft and deployed boom.
+
+![Experimental Boom Mass](Images/experimental_boom_mass.jpeg)
 
 ---
 
-# Technical Topics
+## Spool Design Iteration
 
-- Spacecraft Attitude Dynamics
-- Gravity-Gradient Stabilization
-- Magnetorquer Control
-- Orbital Mechanics
-- Quaternion Kinematics
-- Tether Dynamics
-- Aerospace Simulation
-- Embedded Space Systems
-- Experimental Validation
-- Rapid Prototyping
+One of the primary challenges identified during testing was controlling transient tether tension during deployment.
+
+Multiple spool patterns were experimentally evaluated and refined.
+
+<table>
+<tr>
+<td align="center"><b>Initial Alternating Pattern</b></td>
+<td align="center"><b>Single-Direction Pattern</b></td>
+<td align="center"><b>Transitional Pattern</b></td>
+</tr>
+<tr>
+<td><img src="Images/spool_config_1_alternating.png" width="250"></td>
+<td><img src="Images/spool_config_2_single_direction.png" width="250"></td>
+<td><img src="Images/spool_config_3_transitional.png" width="250"></td>
+</tr>
+</table>
+
+### Initial Alternating Pattern
+
+Alternating the winding direction between layers produced significant transient tension spikes and irregular deployment behavior.
+
+### Single-Direction Pattern
+
+Changing to a primarily single-direction winding strategy substantially improved deployment consistency and reduced tension disturbances.
+
+### Transitional Pattern
+
+Introducing controlled transitional winding between layers further reduced abrupt changes during unspooling and produced near-continuous steady-state deployment through most of the test.
+
+This iterative testing demonstrated that **spool geometry was a major factor in reducing deployment-induced disturbances.**
 
 ---
 
-# Tools & Software
+## Key Results
 
+The combined design, simulation, and experimental effort demonstrated that:
+
+- A compact gravity-gradient mass could be integrated within the PocketQube's restrictive geometry
+- Passive gravity-gradient stabilization produced bounded attitude behavior in simulation
+- Physical spool geometry had a significant effect on deployment-induced disturbances
+- Iterative spool redesign substantially improved tether deployment consistency
+- A hybrid passive/active attitude-control architecture provides a promising approach for the PocketQube platform
+
+---
+
+## Tools & Engineering Skills
+
+**Mechanical Design**
 - SolidWorks
+- Design for additive manufacturing
+- Mass-property optimization
+- Mechanical packaging
+- Rapid prototyping
+
+**Experimental Engineering**
+- Prototype assembly
+- Experimental test development
+- Design iteration
+- Failure-mode identification
+- Qualitative deployment analysis
+
+**Spacecraft Systems**
+- Gravity-gradient stabilization
+- Attitude control
+- PocketQube architecture
+- Tether deployment systems
+- Spacecraft mass and volume constraints
+
+**Computational Tools**
 - MATLAB
 - Simulink
-- Embedded Systems Development
-- Additive Manufacturing
-- Experimental Test Design
+- Numerical simulation fundamentals
 
 ---
 
-# Research Paper
+## Research Paper
 
-This repository includes the AIAA Region I Student Conference paper:
+The complete AIAA Region I Student Conference paper is available in the [`Paper`](Paper/) directory:
 
-**“Design and Validation of a Gravity-Gradient Boom Arm for Hybrid Attitude Control of a PocketQube Satellite”**
+**Design and Validation of a Gravity-Gradient Boom Arm for Hybrid Attitude Control of a PocketQube Satellite**
 
-Topics investigated include:
-- deployable boom dynamics
-- passive spacecraft stabilization
-- tether deployment behavior
-- orbital attitude simulation
-- experimental spool validation
+The paper contains the complete system design, numerical methodology, experimental procedure, results, discussion, and references.
 
 ---
 
-# Key Engineering Challenges
+## Future Development
 
-- Maintaining stability within PocketQube size constraints
-- Reducing deployment-induced disturbances
-- Minimizing transient tether tension spikes
-- Achieving reliable spool deployment behavior
-- Integrating passive and active attitude control systems
+Future development of the system includes:
 
----
-
-# Experimental Results
-
-Testing demonstrated that spool geometry significantly affects deployment stability and transient tension behavior.
-
-Simulation and physical testing showed:
-- bounded libration behavior
-- stable nadir-pointing performance
-- reduced disturbance through optimized spool geometries
-- successful deployment stabilization concepts
-
----
-
-# Future Development
-
+- Flight-ready tungsten boom mass fabrication
 - Magnetorquer integration
-- Flight-ready deployment hardware
-- IMU/magnetometer feedback integration
-- RTOS-based onboard control systems
-- Higher-fidelity orbital perturbation modeling
+- Attitude determination using magnetometers or an IMU
+- Higher-fidelity environmental perturbation modeling
+- Microgravity or on-orbit deployment validation
+- Further optimization of tether anchoring and spool geometry
 
 ---
 
-# Acknowledgments
+## Acknowledgments
 
-Developed through the Wentworth PicoSat Initiative.
+This project was completed collaboratively through the **Wentworth PicoSat Initiative**.
 
-Conference work presented at the AIAA Region I Student Conference.
+The orbital dynamics simulation and associated numerical results shown in this repository were primarily developed by **Lucas Wing**.
+
+The research was presented at the **AIAA Region I Student Conference**.
