@@ -1,8 +1,9 @@
 # PicoSatellite ADCS
 
-Design and experimental validation of a deployable gravity-gradient boom system for hybrid attitude control of a PocketQube satellite.
+Mechanical design, prototyping, and experimental validation of a deployable gravity-gradient boom system for a PocketQube satellite developed through the Wentworth PicoSat Initiative.
 
-This project was developed as part of the Wentworth PicoSat Initiative and presented at the AIAA Region I Student Conference.
+**3rd Place — 2026 AIAA Region I Student Conference**
+I served as the primary author of the accompanying research paper, *Design and Validation of a Gravity-Gradient Boom Arm for Hybrid Attitude Control of a PocketQube Satellite*.
 
 ---
 
