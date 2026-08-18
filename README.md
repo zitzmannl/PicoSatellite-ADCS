@@ -19,7 +19,7 @@ The spacecraft uses a hybrid attitude control architecture combining passive gra
 
 ## My Contributions
 
-My primary responsibilities focused on the mechanical design, prototyping, assembly, and experimental validation of the gravity-gradient deployment system.
+My primary responsibilities focused on the mechanical design, prototyping, assembly, and experimental validation of the gravity-gradient deployment system. Additionally, I was the primary author of the paper and organized the execution of the project.
 
 I was responsible for:
 
