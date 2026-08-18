@@ -231,4 +231,4 @@ This project was completed collaboratively through the **Wentworth PicoSat Initi
 
 The orbital dynamics simulation and associated numerical results shown in this repository were primarily developed by **Lucas Wing**.
 
-The research was presented at the **2026 AIAA Region I Student Conference**.
+The research was presented at the **2026 AIAA Region I Student Conference** and awarded **Third Place**.
