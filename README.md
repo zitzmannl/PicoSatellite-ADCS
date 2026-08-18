@@ -40,7 +40,7 @@ The high-fidelity orbital dynamics simulation and simulation results presented i
 
 ## System Concept
 
-![Deployed gravity-gradient boom concept](Images/gravity_gradient_boom_deployed_concept.png)
+![Deployed gravity-gradient boom concept](Images/deployed_satellite_render.png)
 
 *Concept rendering of the PocketQube with the gravity-gradient boom deployed. Extending the boom mass away from the spacecraft increases the system's moment of inertia and enables passive gravity-gradient stabilization.*
 
